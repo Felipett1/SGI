@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="ISO-8859-1" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panelGrid>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Código: "/>
+                        <br/>
+                        <p:inputText />
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Nombre: "/>
+                        <br/>
+                        <p:inputText />
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="E-mail: "/>
+                        <br/>
+                        <p:inputText />
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Jefe: "/>
+                        <br/>
+                        <p:selectOneMenu>
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Consorcio: "/>
+                        <br/>
+                        <p:selectOneMenu>
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Entidad contratante: "/>
+                        <br/>
+                        <p:inputText />
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Fecha inicio: "/>
+                        <br/>
+                        <p:calendar pattern="dd/MM/yyyy" mask="true"/>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Fecha fin: "/>
+                        <br/>
+                        <p:calendar pattern="dd/MM/yyyy" mask="true"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2">
+                        <p:outputLabel value="Descripción: "/>
+                        <br/>
+                        <p:inputTextarea style="width: 100%"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

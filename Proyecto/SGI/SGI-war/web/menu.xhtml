@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>.:: Sistema de inventarios - SGI ::.</title>
+        <meta charset="ISO-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id='cssmenu'>
+                <ul>
+                    <li class='active'><a><span> Bienvenido(a) <br/> NOMBRE PERSONA</span></a></li>
+                    <li class='last'>
+                        <a href='#' onclick="registroHoras()">
+                            <span>
+                                <span class="glyphicon glyphicon-briefcase" style="padding-right: 20px"/>
+                                Proyectos
+                            </span>
+                        </a>
+                    </li>
+                    <li class='has-sub'>
+                        <a href='#'>
+                            <span>
+                                <span class="glyphicon glyphicon-list-alt" style="padding-right: 20px" />
+                                Articulos
+                            </span>
+                        </a>
+                        <ul>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-ok" style="padding-right: 20px" />
+                                        Sin bajas
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-remove" style="padding-right: 20px" />
+                                        Con bajas
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='last'>
+                        <a href='#' onclick="reportes()">
+                            <span>
+                                <span class="glyphicon glyphicon-flag" style="padding-right: 20px" />
+                                Responsables
+                            </span>
+                        </a>
+                    </li>
+                    <li class='last'>
+                        <a href='#' onclick="reportes()">
+                            <span>
+                                <span class="glyphicon glyphicon-off" style="padding-right: 20px" />
+                                Cerrar sesión
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </h:form>
+    </h:body>
+</html>
