@@ -1,20 +1,23 @@
 <?xml version='1.0' encoding='ISO-8859-1' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>.:: Sistema de inventarios - SGI ::.</title>
-        <meta charset="ISO-8859-1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta http-equiv="X-UA-Conpatible" content="IE=edge" />
-    </h:head>
-    <h:body>
-        <h:form>
-            <div id='cssmenu'>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div id='cssmenu'>
+        <ul>
+            <li class='active'><a><span> Bienvenido(a) <br/> NOMBRE PERSONA</span></a></li>
+            <li class='has-sub'>
+                <a href='#'>
+                    <span>
+                        <span class="glyphicon glyphicon-tasks" style="padding-right: 20px" />
+                        Inventarios
+                    </span>
+                </a>
                 <ul>
-                    <li class='active'><a><span> Bienvenido(a) <br/> NOMBRE PERSONA</span></a></li>
                     <li class='last'>
-                        <a href='#' onclick="registroHoras()">
+                        <a href='#' >
                             <span>
                                 <span class="glyphicon glyphicon-briefcase" style="padding-right: 20px"/>
                                 Proyectos
@@ -22,7 +25,7 @@
                         </a>
                     </li>
                     <li class='has-sub'>
-                        <a href='#'>
+                        <a href='#' >
                             <span>
                                 <span class="glyphicon glyphicon-list-alt" style="padding-right: 20px" />
                                 Articulos
@@ -48,23 +51,197 @@
                         </ul>
                     </li>
                     <li class='last'>
-                        <a href='#' onclick="reportes()">
+                        <a href='#' >
                             <span>
                                 <span class="glyphicon glyphicon-flag" style="padding-right: 20px" />
                                 Responsables
                             </span>
                         </a>
                     </li>
-                    <li class='last'>
-                        <a href='#' onclick="reportes()">
+                </ul>
+            </li>
+            <li class='has-sub'>
+                <a href='#'>
+                    <span>
+                        <span class="glyphicon glyphicon-globe" style="padding-right: 20px" />
+                        Movimientos
+                    </span>
+                </a>
+                <ul>
+                    <li class='has-sub'>
+                        <a href='#' >
                             <span>
-                                <span class="glyphicon glyphicon-off" style="padding-right: 20px" />
-                                Cerrar sesión
+                                <span class="glyphicon glyphicon-retweet" style="padding-right: 20px" />
+                                Cambio articulos
+                            </span>
+                        </a>
+                        <ul>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-gift" style="padding-right: 20px" />
+                                        Grupo
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-pushpin" style="padding-right: 20px" />
+                                        Proyecto
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-screenshot" style="padding-right: 20px" />
+                                        Responsable
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-qrcode" style="padding-right: 20px" />
+                                        Código
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-usd" style="padding-right: 20px" />
+                                        Costo
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='has-sub'>
+                        <a href='#' >
+                            <span>
+                                <span class="glyphicon glyphicon-download-alt" style="padding-right: 20px" />
+                                Exportar articulos
+                            </span>
+                        </a>
+                        <ul>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-remove-circle" style="padding-right: 20px" />
+                                        Con bajas
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-ok-circle" style="padding-right: 20px" />
+                                        Sin bajas
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class='has-sub'>
+                <a href='#'>
+                    <span>
+                        <span class="glyphicon glyphicon-pencil" style="padding-right: 20px" />
+                        Administración
+                    </span>
+                </a>
+                <ul>
+                    <li class='has-sub'>
+                        <a href='#' >
+                            <span>
+                                <span class="glyphicon glyphicon-lock" style="padding-right: 20px" />
+                                Responsables
+                            </span>
+                        </a>
+                        <ul>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-wrench" style="padding-right: 20px" />
+                                        Cargos
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-eye-open" style="padding-right: 20px" />
+                                        Jefes
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='has-sub'>
+                        <a href='#' >
+                            <span>
+                                <span class="glyphicon glyphicon-cd" style="padding-right: 20px" />
+                                Articulos
+                            </span>
+                        </a>
+                        <ul>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-inbox" style="padding-right: 20px" />
+                                        Grupos
+                                    </span>
+                                </a>
+                            </li>
+                            <li class='last'>
+                                <a href='#' >
+                                    <span>
+                                        <span class="glyphicon glyphicon-sort-by-order" style="padding-right: 20px" />
+                                        Consecutivo
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='has-sub'>
+                        <a href='#' >
+                            <span>
+                                <span class="glyphicon glyphicon-briefcase" style="padding-right: 20px" />
+                                Proyectos
+                            </span>
+                        </a>
+                        <ul>
+                            <li class='last'>
+                                <a href='#' onclick="empresa();">
+                                    <span>
+                                        <span class="glyphicon glyphicon-equalizer" style="padding-right: 20px" />
+                                        Empresas
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='last'>
+                        <a href='#' >
+                            <span>
+                                <span class="glyphicon glyphicon-user" style="padding-right: 20px" />
+                                Usuarios
                             </span>
                         </a>
                     </li>
                 </ul>
-            </div>
-        </h:form>
-    </h:body>
-</html>
+            </li>
+            <li class='last'>
+                <a href='#' onclick="reportes()">
+                    <span>
+                        <span class="glyphicon glyphicon-off" style="padding-right: 20px" />
+                        Cerrar sesión
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</ui:composition>

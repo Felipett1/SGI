@@ -23,6 +23,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>sgi/plantilla.xhtml</welcome-file>
+        <welcome-file>sgi/login.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -9,7 +9,7 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:commandButton value="Dialogo" onclick="PF('dialogo').show()"/>
+            <p:commandButton value="Agregar registro" actionListener="#{controladorEmpresa.prueba()}" icon="ui-icon-plus" process="@this"/>
             <p:dataTable var="car" widgetVar="carsTable"
                          emptyMessage="No hay datos" >
                 <f:facet name="header">
