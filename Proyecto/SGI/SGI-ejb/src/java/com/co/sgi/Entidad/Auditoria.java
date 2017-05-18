@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -46,6 +47,12 @@ public class Auditoria implements Serializable {
     @Size(max = 1000)
     @Column(name = "detalle")
     private String detalle;
+    @Lob
+    @Column(name = "\"archivoAnterior\"")
+    private byte[] archivoAnterior;
+    @Lob
+    @Column(name = "\"archivoNuevo\"")
+    private byte[] archivoNuevo;
 
     public Auditoria() {
     }
@@ -54,13 +61,15 @@ public class Auditoria implements Serializable {
         this.secuencia = secuencia;
     }
 
-    public Auditoria(Long secuencia, Date fecha, String usuario, String accion, String tabla, String detalle) {
+    public Auditoria(Long secuencia, Date fecha, String usuario, String accion, String tabla, String detalle, byte[] archivoAnterior, byte[] archivoNuevo) {
         this.secuencia = secuencia;
         this.fecha = fecha;
         this.usuario = usuario;
         this.accion = accion;
         this.tabla = tabla;
         this.detalle = detalle;
+        this.archivoAnterior = archivoAnterior;
+        this.archivoNuevo = archivoNuevo;
     }
 
     public Long getSecuencia() {
@@ -109,6 +118,22 @@ public class Auditoria implements Serializable {
 
     public void setDetalle(String detalle) {
         this.detalle = detalle;
+    }
+
+    public byte[] getArchivoAnterior() {
+        return archivoAnterior;
+    }
+
+    public void setArchivoAnterior(byte[] archivoAnterior) {
+        this.archivoAnterior = archivoAnterior;
+    }
+
+    public byte[] getArchivoNuevo() {
+        return archivoNuevo;
+    }
+
+    public void setArchivoNuevo(byte[] archivoNuevo) {
+        this.archivoNuevo = archivoNuevo;
     }
 
     @Override

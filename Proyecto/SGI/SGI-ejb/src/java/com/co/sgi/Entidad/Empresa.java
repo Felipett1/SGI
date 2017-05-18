@@ -32,7 +32,7 @@ public class Empresa implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "\"centroCosto\"")
-    private long centroCosto;
+    private String centroCosto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -46,7 +46,7 @@ public class Empresa implements Serializable {
         this.secuencia = secuencia;
     }
 
-    public Empresa(Long secuencia, long centroCosto, String nombre) {
+    public Empresa(Long secuencia, String centroCosto, String nombre) {
         this.secuencia = secuencia;
         this.centroCosto = centroCosto;
         this.nombre = nombre;
@@ -60,11 +60,11 @@ public class Empresa implements Serializable {
         this.secuencia = secuencia;
     }
 
-    public long getCentroCosto() {
+    public String getCentroCosto() {
         return centroCosto;
     }
 
-    public void setCentroCosto(long centroCosto) {
+    public void setCentroCosto(String centroCosto) {
         this.centroCosto = centroCosto;
     }
 

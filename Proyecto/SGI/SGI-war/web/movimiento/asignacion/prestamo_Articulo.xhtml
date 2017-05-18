@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:remoteCommand name="llamarDialogoAC" process="@this"
+                     actionListener="#{controlNavegacion.dialogoDinamico('/movimiento/asignacion/CRUD/prestamo_Articulo.xhtml')}"/>
+    <p:remoteCommand name="llamarDialogoE" process="@this"
+                     actionListener="#{controlNavegacion.dialogoEDinamico('/movimiento/asignacion/CRUD/eliminar.xhtml')}"/>
+    <p:commandButton value="Agregar registro" actionListener="#{controladorPrestamoArticulo.limpiar()}" 
+                     oncomplete="llamarDialogoAC();" icon="ui-icon-plus" process="@this"/>
+    <p:dataTable id="dtbDatos" var="prestamo" widgetVar="dtbDatos"
+                 scrollRows="50" scrollable="true" liveScroll="true" scrollHeight="415"
+                 value="#{controladorPrestamoArticulo.listaPrestamos}"
+                 emptyMessage="No hay datos" >
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Buscar: "/>
+                <p:inputText id="globalFilter" onkeyup="PF('dtbDatos').filter()" style="width:250px;" placeholder="Ingrese una palabra"/>
+            </p:outputPanel>
+        </f:facet>
+
+        <p:column headerText="Fecha"
+                  filterBy="#{prestamo.fecha}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{prestamo.fecha}">
+            <h:outputText value="#{prestamo.fecha}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="Responsable"
+                  filterBy="#{prestamo.responsable.nombreCompleto}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{prestamo.responsable.nombreCompleto}">
+            <h:outputText value="#{prestamo.responsable.nombreCompleto}"/>
+        </p:column>
+
+        <p:column headerText="Estado"
+                  filterBy="#{prestamo.estado ? 'Activo' : 'Finalizado'}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{prestamo.estado ? 'Activo' : 'Finalizado'}">
+            <h:outputText value="#{prestamo.estado ? 'Activo' : 'Finalizado'}"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-search" 
+                             actionListener="#{controladorPrestamoArticulo.seleccionarActualizar_Eliminar(prestamo)}" 
+                             oncomplete="PF('detalleArticulosDialogo').show();" process="@this"
+                             update=":principalForm:dtbDetalleArticulos, :principalForm:detalleObsv"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-arrowthickstop-1-s" 
+                             actionListener="#{controladorPrestamoArticulo.generarActaEntrega(prestamo)}" 
+                             process="@this"
+                             />
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-arrowthickstop-1-n" 
+                             actionListener="#{controladorPrestamoArticulo.seleccionarActualizar_Eliminar(prestamo)}" 
+                             process="@this" update=":principalForm:info"
+                             oncomplete="PF('soporteEntrega').show();"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-pencil" 
+                             actionListener="#{controladorPrestamoArticulo.seleccionarActualizar_Eliminar(prestamo)}" 
+                             oncomplete="llamarDialogoAC();" process="@this"
+                             disabled="#{prestamo.soporteEntregado != null ? 'true' : false}"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-trash" 
+                             actionListener="#{controladorPrestamoArticulo.seleccionarActualizar_Eliminar(prestamo)}" 
+                             oncomplete="llamarDialogoE();" process="@this"
+                             disabled="#{prestamo.soporteEntregado != null ? 'true' : false}"/>
+        </p:column>
+    </p:dataTable>
+
+    <p:dialog id="responsableDialogo" header="Responsable" widgetVar="responsableDialogo" 
+              modal="true" resizable="false" draggable="true" 
+              closeOnEscape="true" dynamic="true">
+        <p:dataTable id="tblResponsables" style="width: 652px" var="responsable" value="#{controladorPrestamoArticulo.listaResponsables}" rowKey="#{responsable.secuencia}"
+                     selection="#{controladorPrestamoArticulo.responsable}" selectionMode="single" widgetVar="tblResponsables" scrollable="true" scrollWidth="655" scrollHeight="300"
+                     emptyMessage="No se encontraron responsables.">
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Buscar: "/>
+                    <p:inputText id="globalFilter" onkeyup="PF('tblResponsables').filter()" style="width:250px;" placeholder="Ingrese una palabra"/>
+                </p:outputPanel>
+            </f:facet>
+            <p:column filterBy="#{responsable.identificacion}" filterMatchMode="contains" filterStyle="display:none"
+                      headerText="Identificacion">
+                <h:outputText  value="#{responsable.identificacion}" />
+            </p:column>
+            <p:column filterBy="#{responsable.nombreCompleto}"  filterMatchMode="contains" filterStyle="display:none"
+                      headerText="Nombre">
+                <h:outputText value="#{responsable.nombreCompleto}" />
+            </p:column>
+        </p:dataTable>
+
+        <p:commandButton value="Aceptar" icon="ui-icon-check" 
+                         onclick="PF('tblResponsables').clearFilters(); PF('responsableDialogo').hide();" 
+                         actionListener="#{controladorPrestamoArticulo.seleccionarResponsable()}"  process="@this"
+                         update="prestamoArticulos:responsable"
+                         style="float: right"/>
+    </p:dialog>
+
+    <p:dialog id="articulosDialogo" header="Articulos" widgetVar="articulosDialogo" 
+              modal="true" resizable="false" draggable="true" 
+              closeOnEscape="true" dynamic="true">
+        <p:dataTable id="tblArticulos" style="width: 652px" var="articulo" value="#{controladorPrestamoArticulo.articulosDisponibles}" rowKey="#{articulo.secuencia}"
+                     selection="#{controladorPrestamoArticulo.articulo}" selectionMode="single" widgetVar="tblArticulos" scrollable="true" scrollWidth="655" scrollHeight="300"
+                     emptyMessage="No se encontraron articulos.">
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Buscar: "/>
+                    <p:inputText id="globalFilter" onkeyup="PF('tblArticulos').filter()" style="width:250px;" placeholder="Ingrese una palabra"/>
+                </p:outputPanel>
+            </f:facet>
+            <p:column filterBy="#{articulo.codigo}" filterMatchMode="contains" filterStyle="display:none"
+                      headerText="Codigo">
+                <h:outputText  value="#{articulo.codigo}" />
+            </p:column>
+            <p:column filterBy="#{articulo.nombre}"  filterMatchMode="contains" filterStyle="display:none"
+                      headerText="Nombre">
+                <h:outputText value="#{articulo.nombre}" />
+            </p:column>
+        </p:dataTable>
+
+        <p:commandButton value="Aceptar" icon="ui-icon-check" 
+                         onclick="PF('articulosDialogo').hide();" 
+                         actionListener="#{controladorPrestamoArticulo.adicionarArticulo()}"  process="@this, tblArticulos"
+                         update="prestamoArticulos:dtbArticulos, tblArticulos"
+                         style="float: right"/>
+    </p:dialog>
+    <p:dialog id="detalleArticulosDialogo" header="Articulos prestados" widgetVar="detalleArticulosDialogo" 
+              modal="true" resizable="false" draggable="true" 
+              closeOnEscape="true" dynamic="true">
+        <p:dataTable id="dtbDetalleArticulos" var="articulo" widgetVar="dtbDetalleArticulos"
+                     scrollRows="10" 
+                     scrollable="true" liveScroll="true" scrollHeight="#{controladorPrestamoArticulo.articulosSeleccionados.size() > 10 ? '200' : controladorPrestamoArticulo.articulosSeleccionados.size() * 32}"
+                     value="#{controladorPrestamoArticulo.articulosSeleccionados}"
+                     emptyMessage="Sin articulos asignados" style="width: 500px">
+            <p:column headerText="Codigo"
+                      sortBy="#{articulo.codigo}">
+                <h:outputText value="#{articulo.codigo}"/>
+            </p:column>
+
+            <p:column headerText="Nombre"
+                      sortBy="#{articulo.nombre}">
+                <h:outputText value="#{articulo.nombre}"/>
+            </p:column>
+        </p:dataTable>
+        <br/>
+        <p:outputLabel value="Observaciones: "/>
+        <br/>
+        <p:inputTextarea id="detalleObsv" value="#{controladorPrestamoArticulo.prestamo.observaciones}" 
+                         style="width: 100%" scrollHeight="150" autoResize="false"
+                         readonly="true"/>
+    </p:dialog>
+    <p:dialog id="verReporte" header="Acta de entrega" 
+              width="1024px" height="530px"
+              widgetVar="verReporte" modal="true" resizable="false" draggable="false"
+              closeOnEscape="true" onHide="limpiarArchivo();">
+        <object type="application/pdf"  data="#{controladorPrestamoArticulo.verActa}" height="90%" width="100%" internalinstanceid="43"/>
+    </p:dialog>
+    <p:remoteCommand name="limpiarArchivo" actionListener="#{controladorPrestamoArticulo.eliminarArchivo()}"/>
+
+    <p:dialog id="soporteEntrega" header="Cargar soporte entrega" widgetVar="soporteEntrega" 
+              modal="true" resizable="false" draggable="true" 
+              closeOnEscape="true" dynamic="true">
+        <p:outputLabel value="Soporte entrega: "/>
+        <p:commandButton icon="ui-icon-search" process="@this"
+                         style="display: #{controladorPrestamoArticulo.prestamo.soporteEntregado != null ? '' : 'none'}"
+                         actionListener="#{controladorPrestamoArticulo.alistarSoporte()}"/>
+        <p:fileUpload fileUploadListener="#{controladorPrestamoArticulo.cargarArchivo}" mode="advanced"
+                      auto="true" allowTypes="/(\.|\/)(pdf|PDF|Pdf)$/" 
+                      update="info" invalidFileMessage="Solo se permiten archivos PDF."
+                      label="Adjuntar soporte"/>
+        <br/>
+        <h:outputText id="info" value="#{controladorPrestamoArticulo.estadoSoporte == 'NE' ? 'No se ha adjuntado ningun soporte.' : 
+                                         controladorPrestamoArticulo.estadoSoporte == 'E' ? 'Ya se ha cargado un soporte' :
+                                         controladorPrestamoArticulo.estadoSoporte == 'AG' ? 'Soporte cargado exitosamente' :
+                                         controladorPrestamoArticulo.estadoSoporte == 'AC' ? 'Soporte actualizado exitosamente.' : 'Error interno'}"
+                      style="color: #{controladorPrestamoArticulo.estadoSoporte == 'NE' ? 'red' : 
+                                      controladorPrestamoArticulo.estadoSoporte == 'E' ? 'green' :
+                                      controladorPrestamoArticulo.estadoSoporte == 'AG' ? 'green' :
+                                      controladorPrestamoArticulo.estadoSoporte == 'AC' ? 'blue' : 'red'};
+                      font-weight: bold"/>
+        <br/>
+        <br/>
+        <p:commandButton value="Aceptar" icon="ui-icon-check" 
+                         onclick="PF('soporteEntrega').hide();" 
+                         actionListener="#{controladorPrestamoArticulo.agregar_actualizarSoporte()}"  process="@this"
+                         style="float: right"/>
+    </p:dialog>
+</ui:composition>
+

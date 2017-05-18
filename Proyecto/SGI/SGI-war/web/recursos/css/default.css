@@ -40,4 +40,6 @@ a:link:hover, a:visited:hover  {
     width: 100% !important;
 }
 
-
+.ui-panelgrid td, .ui-panelgrid tr{
+    border-style: none !important
+}

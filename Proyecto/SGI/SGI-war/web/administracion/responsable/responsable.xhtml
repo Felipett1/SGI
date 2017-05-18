@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:remoteCommand name="llamarDialogoAC" process="@this"
+                     actionListener="#{controlNavegacion.dialogoDinamico('/administracion/responsable/CRUD/responsable.xhtml')}"/>
+    <p:remoteCommand name="llamarDialogoE" process="@this"
+                     actionListener="#{controlNavegacion.dialogoEDinamico('/administracion/responsable/CRUD/eliminar.xhtml')}"/>
+    <p:commandButton value="Agregar registro" actionListener="#{controladorResponsable.limpiar()}" 
+                     oncomplete="llamarDialogoAC();" icon="ui-icon-plus" process="@this"/>
+    <p:dataTable id="dtbDatos" var="responsable" widgetVar="dtbDatos"
+                 scrollRows="50" scrollable="true" liveScroll="true" scrollHeight="415"
+                 value="#{controladorResponsable.listaResponsable}"
+                 emptyMessage="No hay datos" >
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Buscar: "/>
+                <p:inputText id="globalFilter" onkeyup="PF('dtbDatos').filter()" style="width:250px;" placeholder="Ingrese una palabra"/>
+            </p:outputPanel>
+        </f:facet>
+
+        <p:column headerText="Identificacion"
+                  filterBy="#{responsable.identificacion}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{responsable.identificacion}">
+            <h:outputText value="#{responsable.identificacion}"/>
+        </p:column>
+
+        <p:column headerText="Nombre"
+                  filterBy="#{responsable.nombreCompleto}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{responsable.nombreCompleto}">
+            <h:outputText value="#{responsable.nombreCompleto}"/>
+        </p:column>
+        
+        <p:column headerText="Proyecto"
+                  filterBy="#{responsable.proyecto.nombre}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{responsable.proyecto.nombre}">
+            <h:outputText value="#{responsable.proyecto.nombre}"/>
+        </p:column>
+
+        <p:column headerText="Estado"
+                  filterBy="#{responsable.estado ? 'Activo' : 'Inactivo'}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{responsable.estado ? 'Activo' : 'Inactivo'}">
+            <h:outputText value="#{responsable.estado ? 'Activo' : 'Inactivo'}"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-search" 
+                             actionListener="#{controladorResponsable.seleccionarActualizar_Eliminar(responsable)}" 
+                             oncomplete="PF('detalle').show();" process="@this"
+                             update=":principalForm:detalle"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-pencil" 
+                             actionListener="#{controladorResponsable.seleccionarActualizar_Eliminar(responsable)}" 
+                             oncomplete="llamarDialogoAC();" process="@this"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-trash" 
+                             actionListener="#{controladorResponsable.seleccionarActualizar_Eliminar(responsable)}" 
+                             oncomplete="llamarDialogoE();" process="@this"/>
+        </p:column>
+    </p:dataTable>
+
+    <p:dialog id="detalle" header="Datalle" widgetVar="detalle" modal="true" resizable="false" draggable="false"
+              closeOnEscape="true">
+        <p:panelGrid>
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="Email "/>
+                    <br/>
+                    <h:outputText value="#{controladorResponsable.responsable.email}"/>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Telefono: "/>
+                    <br/>
+                    <h:outputText value="#{controladorResponsable.responsable.telefono}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="Cargo: "/>
+                    <br/>
+                    <h:outputText value="#{controladorResponsable.responsable.cargo}"/>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Ciudad: "/>
+                    <br/>
+                    <h:outputText value="#{controladorResponsable.responsable.ciudad}"/>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    </p:dialog>
+</ui:composition>

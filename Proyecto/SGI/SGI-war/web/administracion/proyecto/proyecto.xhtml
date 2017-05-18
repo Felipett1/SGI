@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:remoteCommand name="llamarDialogoAC" process="@this"
+                     actionListener="#{controlNavegacion.dialogoDinamico('/administracion/proyecto/CRUD/proyecto.xhtml')}"/>
+    <p:remoteCommand name="llamarDialogoE" process="@this"
+                     actionListener="#{controlNavegacion.dialogoEDinamico('/administracion/proyecto/CRUD/eliminar.xhtml')}"/>
+    <p:commandButton value="Agregar registro" actionListener="#{controladorProyecto.limpiar()}" 
+                     oncomplete="llamarDialogoAC();" icon="ui-icon-plus" process="@this"/>
+    <p:dataTable id="dtbDatos" var="proyecto" widgetVar="dtbDatos"
+                 scrollRows="50" scrollable="true" liveScroll="true" scrollHeight="415"
+                 value="#{controladorProyecto.listaProyectos}"
+                 emptyMessage="No hay datos" >
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Buscar: "/>
+                <p:inputText id="globalFilter" onkeyup="PF('dtbDatos').filter()" style="width:250px;" placeholder="Ingrese una palabra"/>
+            </p:outputPanel>
+        </f:facet>
+
+        <p:column headerText="Codigo"
+                  filterBy="#{proyecto.codigo}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{proyecto.codigo}">
+            <h:outputText value="#{proyecto.codigo}"/>
+        </p:column>
+
+        <p:column headerText="Nombre"
+                  filterBy="#{proyecto.nombre}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{proyecto.nombre}">
+            <h:outputText value="#{proyecto.nombre}"/>
+        </p:column>
+
+        <p:column headerText="Empresa"
+                  filterBy="#{proyecto.empresa.nombre}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{proyecto.empresa.nombre}">
+            <h:outputText value="#{proyecto.empresa.nombre}"/>
+        </p:column>
+        <p:column headerText="Entidad Contratante"
+                  filterBy="#{proyecto.entidadContratante.nombre}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{proyecto.entidadContratante.nombre}">
+            <h:outputText value="#{proyecto.entidadContratante.nombre}"/>
+        </p:column>
+        <p:column headerText="Fecha inicial"
+                  filterBy="#{proyecto.fechaInicial}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{proyecto.fechaInicial}">
+            <h:outputText value="#{proyecto.fechaInicial}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+        <p:column headerText="Fecha final"
+                  filterBy="#{proyecto.fechaFinal}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{proyecto.fechaFinal}">
+            <h:outputText value="#{proyecto.fechaFinal}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="Estado"
+                  filterBy="#{proyecto.estado ? 'Activo' : 'Inactivo'}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{proyecto.estado ? 'Activo' : 'Inactivo'}">
+            <h:outputText value="#{proyecto.estado ? 'Activo' : 'Inactivo'}"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-search" 
+                             actionListener="#{controladorProyecto.seleccionarActualizar_Eliminar(proyecto)}" 
+                             oncomplete="PF('detalle').show();" process="@this"
+                             update=":principalForm:detalle"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-pencil" 
+                             actionListener="#{controladorProyecto.seleccionarActualizar_Eliminar(proyecto)}" 
+                             oncomplete="llamarDialogoAC();" process="@this"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-trash" 
+                             actionListener="#{controladorProyecto.seleccionarActualizar_Eliminar(proyecto)}" 
+                             oncomplete="llamarDialogoE();" process="@this"/>
+        </p:column>
+    </p:dataTable>
+
+    <p:dialog id="detalle" header="Objeto de contrato" widgetVar="detalle" modal="true" resizable="false" draggable="false"
+              closeOnEscape="true" width="350" height="100">
+        <p:inputTextarea value="#{controladorProyecto.proyecto.objetoContrato}"
+                         readonly="true" style="width: 100%;" scrollHeight="150" autoResize="false"/>
+    </p:dialog>
+</ui:composition>

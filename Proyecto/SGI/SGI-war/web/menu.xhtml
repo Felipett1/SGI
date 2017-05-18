@@ -72,15 +72,15 @@
                         <a href='#' >
                             <span>
                                 <span class="glyphicon glyphicon-retweet" style="padding-right: 20px" />
-                                Cambio articulos
+                                Prestamo
                             </span>
                         </a>
                         <ul>
                             <li class='last'>
-                                <a href='#' >
+                                <a href='#' onclick="prestamoArticulo();">
                                     <span>
                                         <span class="glyphicon glyphicon-gift" style="padding-right: 20px" />
-                                        Grupo
+                                        Entregar
                                     </span>
                                 </a>
                             </li>
@@ -88,31 +88,7 @@
                                 <a href='#' >
                                     <span>
                                         <span class="glyphicon glyphicon-pushpin" style="padding-right: 20px" />
-                                        Proyecto
-                                    </span>
-                                </a>
-                            </li>
-                            <li class='last'>
-                                <a href='#' >
-                                    <span>
-                                        <span class="glyphicon glyphicon-screenshot" style="padding-right: 20px" />
-                                        Responsable
-                                    </span>
-                                </a>
-                            </li>
-                            <li class='last'>
-                                <a href='#' >
-                                    <span>
-                                        <span class="glyphicon glyphicon-qrcode" style="padding-right: 20px" />
-                                        Código
-                                    </span>
-                                </a>
-                            </li>
-                            <li class='last'>
-                                <a href='#' >
-                                    <span>
-                                        <span class="glyphicon glyphicon-usd" style="padding-right: 20px" />
-                                        Costo
+                                        Recibir
                                     </span>
                                 </a>
                             </li>
@@ -150,79 +126,49 @@
                 <a href='#'>
                     <span>
                         <span class="glyphicon glyphicon-pencil" style="padding-right: 20px" />
-                        Administración
+                        Administracion
                     </span>
                 </a>
                 <ul>
-                    <li class='has-sub'>
-                        <a href='#' >
+                    <li class='last'>
+                        <a href='#' onclick="responsable();">
                             <span>
                                 <span class="glyphicon glyphicon-lock" style="padding-right: 20px" />
                                 Responsables
                             </span>
                         </a>
-                        <ul>
-                            <li class='last'>
-                                <a href='#' >
-                                    <span>
-                                        <span class="glyphicon glyphicon-wrench" style="padding-right: 20px" />
-                                        Cargos
-                                    </span>
-                                </a>
-                            </li>
-                            <li class='last'>
-                                <a href='#' >
-                                    <span>
-                                        <span class="glyphicon glyphicon-eye-open" style="padding-right: 20px" />
-                                        Jefes
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    <li class='has-sub'>
-                        <a href='#' >
+                    <li class='last'>
+                        <a href='#' onclick="articulo();">
                             <span>
                                 <span class="glyphicon glyphicon-cd" style="padding-right: 20px" />
                                 Articulos
                             </span>
                         </a>
-                        <ul>
-                            <li class='last'>
-                                <a href='#' >
-                                    <span>
-                                        <span class="glyphicon glyphicon-inbox" style="padding-right: 20px" />
-                                        Grupos
-                                    </span>
-                                </a>
-                            </li>
-                            <li class='last'>
-                                <a href='#' >
-                                    <span>
-                                        <span class="glyphicon glyphicon-sort-by-order" style="padding-right: 20px" />
-                                        Consecutivo
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    <li class='has-sub'>
-                        <a href='#' >
+                    <li class='last'>
+                        <a href='#' onclick="proyecto();">
                             <span>
                                 <span class="glyphicon glyphicon-briefcase" style="padding-right: 20px" />
                                 Proyectos
                             </span>
                         </a>
-                        <ul>
-                            <li class='last'>
-                                <a href='#' onclick="empresa();">
-                                    <span>
-                                        <span class="glyphicon glyphicon-equalizer" style="padding-right: 20px" />
-                                        Empresas
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li class='last'>
+                        <a href='#' onclick="empresa();">
+                            <span>
+                                <span class="glyphicon glyphicon-equalizer" style="padding-right: 20px" />
+                                Empresas
+                            </span>
+                        </a>
+                    </li>
+                    <li class='last'>
+                        <a href='#' onclick="entidadContratante();">
+                            <span>
+                                <span class="glyphicon glyphicon-eye-open" style="padding-right: 20px" />
+                                Entidad contratante
+                            </span>
+                        </a>
                     </li>
                     <li class='last'>
                         <a href='#' >
@@ -235,10 +181,10 @@
                 </ul>
             </li>
             <li class='last'>
-                <a href='#' onclick="reportes()">
+                <a href='#'>
                     <span>
                         <span class="glyphicon glyphicon-off" style="padding-right: 20px" />
-                        Cerrar sesión
+                        Cerrar sesion
                     </span>
                 </a>
             </li>

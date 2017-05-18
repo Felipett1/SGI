@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Clasificacion: "/>
+            <br/>
+            <p:selectOneMenu value="#{controladorArticulo.vehi.clasificacion}"
+                             effect="fade" filter="true" filterMatchMode="contains"
+                             autoWidth="false"
+                             style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}">
+                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                <f:selectItems value="#{controladorArticulo.clasificaciones}"/>
+            </p:selectOneMenu>
+            <h:outputText value="#{controladorArticulo.vehi.clasificacion ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Placa: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.placa}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.placa ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Marca: "/>
+            <br/>
+            <p:selectOneMenu value="#{controladorArticulo.vehi.marca}"
+                             effect="fade" filter="true" filterMatchMode="contains"
+                             autoWidth="false"
+                             style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}">
+                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                <f:selectItems value="#{controladorArticulo.marcas}"/>
+            </p:selectOneMenu>
+            <h:outputText value="#{controladorArticulo.vehi.marca ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Linea: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.linea}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.linea ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Modelo: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.modelo}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.modelo ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Cilindrada(CC): "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.cilindraje}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.cilindraje ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Color: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.linea}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.linea ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Servicio: "/>
+            <br/>
+            <p:selectOneMenu value="#{controladorArticulo.vehi.servicio}"
+                             effect="fade" filter="true" filterMatchMode="contains"
+                             autoWidth="false"
+                             style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}">
+                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                <f:selectItems value="#{controladorListasValores.servicio}"/>
+            </p:selectOneMenu>
+            <h:outputText value="#{controladorArticulo.vehi.servicio ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Clase vehiculo: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.clase}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.clase ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Tipo carroceria: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.carroceria}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.carroceria ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Combustible: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.combustible}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.combustible ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Capacidad KG/PSJ: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.capacidad}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.capacidad ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Numero motor: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.motor}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.motor ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="REG: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.reg}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.reg ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="VIN: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.vin}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.vin ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Numero de serie: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.serie}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.serie ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Numero chasis: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.chasis}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.chasis ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Propietario: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.propietario}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.propietario ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Fecha matricula: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaMatricula}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaMatricula ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Fecha Exp.Lic.Tto: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaLicenciaTransito}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaLicenciaTransito ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Fecha expedicion SOAT: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaExpSOAT}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaExpSOAT ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Tarifa SOAT: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.tafiaSOAT}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.tafiaSOAT ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Prima SOAT: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.primaSOAT}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.primaSOAT ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Contribucion FOSYGA: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.contribucionFOSYGA}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.contribucionFOSYGA ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Tasa RUNT: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.tasaRUNT}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.tasaRUNT ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Total a pagar SOAT: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.totalSOAT}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.totalSOAT ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="AT: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.at}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.at ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Vigencia tecnicomecanica: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaTecnicomecanica}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaTecnicomecanica ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Numero tarjeta operacion: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.numeroTarjetaOper}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.numeroTarjetaOper ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Fecha expedicion T.O: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaExpTO}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaExpTO ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Fecha vencimiento T.O: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaVencimientoTO}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaVencimientoTO ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Numero poliza contractual: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.numeroPolizaCA}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.numeroPolizaCA ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Fecha expedicion P.C.: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaExpPCA}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaExpPCA ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Fecha vencimiento P.C: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaVencimientoPCA}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaVencimientoPCA ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Numero poliza extracontractual: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.vehi.numeroPolizaECA}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.numeroPolizaECA ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Fecha expedicion P.E.C.: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaExpECA}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaExpECA ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Fecha vencimiento P.E.C: "/>
+            <br/>
+            <p:calendar value="#{controladorArticulo.vehi.fechaVencimientoECA}" pattern="dd/MM/yyyy" 
+                        mask="true" locale="es"
+                        style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.vehi.fechaVencimientoECA ? 'Si' : 'No'}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+        <p:column colspan="2">
+            <p:outputLabel value="Observaciones: "/>
+            <br/>
+            <p:inputTextarea value="#{controladorArticulo.top.observacion}" 
+                             style="width: 100%" scrollHeight="150" autoResize="false"
+                             readonly="#{controladorArticulo.accion != 'C' ? 'false' : 'true'}"/>
+        </p:column>
+    </p:row>
+</ui:composition>
+

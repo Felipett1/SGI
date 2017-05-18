@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form>
+        <p:panelGrid>
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="Codigo: "/>
+                    <br/>
+                    <p:inputText value="#{controladorProyecto.proyecto.codigo}"/>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Nombre: "/>
+                    <br/>
+                    <p:inputText value="#{controladorProyecto.proyecto.nombre}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="Empresa: "/>
+                    <br/>
+                    <p:selectOneMenu label="#{controladorProyecto.proyecto.empresa.nombre}" 
+                                     value="#{controladorProyecto.proyecto.empresa}" style="width:125px"
+                                     converter="#{convertidor}" effect="fade"
+                                     filter="true" filterMatchMode="contains"
+                                     autoWidth="false">
+                        <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                        <f:selectItems value="#{controladorProyecto.listaEmpresas}" var="empresa" itemLabel="#{empresa.nombre}" itemValue="#{empresa}"/>
+                    </p:selectOneMenu>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Entidad contratante: "/>
+                    <br/>
+                    <p:selectOneMenu label="#{controladorProyecto.proyecto.entidadContratante.nombre}" 
+                                     value="#{controladorProyecto.proyecto.entidadContratante}" style="width:125px"
+                                     converter="#{convertidor}" effect="fade"
+                                     filter="true" filterMatchMode="contains"
+                                     autoWidth="false">
+                        <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                        <f:selectItems value="#{controladorProyecto.listaEntidadContratantes}" var="entidad" 
+                                       itemLabel="#{entidad.nombre}" itemValue="#{entidad}"/>
+                    </p:selectOneMenu>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="Fecha inical: "/>
+                    <br/>
+                    <p:calendar value="#{controladorProyecto.proyecto.fechaInicial}" pattern="dd/MM/yyyy" 
+                                mask="true" locale="es"/>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="Fecha final: "/>
+                    <br/>
+                    <p:calendar value="#{controladorProyecto.proyecto.fechaFinal}" pattern="dd/MM/yyyy" 
+                                mask="true" locale="es"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column colspan="2">
+                    <p:outputLabel value="Objeto contrato: "/>
+                    <br/>
+                    <p:inputTextarea value="#{controladorProyecto.proyecto.objetoContrato}" 
+                                     style="width: 100%" scrollHeight="150" autoResize="false"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column/>
+                <p:column>
+                    <p:commandButton value="Aceptar" icon="ui-icon-check"
+                                     actionListener="#{controladorProyecto.agregar_actualizar()}"
+                                     process="@form" style="float: right"
+                                     onclick="PF('dialogo').hide()"/>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    </h:form>
+</ui:composition>
+

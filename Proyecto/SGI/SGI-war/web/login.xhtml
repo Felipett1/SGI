@@ -12,6 +12,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+        <link href = "recursos/img/logo.png" rel="icon" type="image/png"/>
     </h:head>
     <h:body>
         <h:form>
@@ -19,25 +20,26 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <h1>Sistema de gestión de inventarios - SGI</h1>
+                            <center><img SRC="recursos/img/logo.png" width="80" height="100"/></center>
+                            <h1>Sistema de gestión de inventarios</h1>
                             <div class="form-wrap">
-                                
-                                    <div class="form-group">
-                                        <label for="email" class="sr-only">Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Usuario"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="key" class="sr-only">Password</label>
-                                        <input type="password" name="key" id="key" class="form-control" placeholder="Contraseña"/>
-                                    </div>
-                                    <div class="checkbox">
-                                        <span class="character-checkbox" onclick="showPassword()"></span>
-                                        <span class="label">Ver contraseña</span>
-                                    </div>
-                                    <input type="Button" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Ingresar"
-                                           onclick="inicio();"/>
-                                    <p:remoteCommand name="inicio" action="plantilla" immediate="true"/>
-                                
+
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Usuario"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="key" class="sr-only">Password</label>
+                                    <input type="password" name="key" id="key" class="form-control" placeholder="Contraseña"/>
+                                </div>
+                                <div class="checkbox">
+                                    <span class="character-checkbox" onclick="showPassword()"></span>
+                                    <span class="label">Ver contraseña</span>
+                                </div>
+                                <input type="Button" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Ingresar"
+                                       onclick="inicio();"/>
+                                <p:remoteCommand name="inicio" action="plantilla" immediate="true"/>
+
                                 <!--<a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">¿Olvido la contraseña?</a>-->
                                 <hr/>
                             </div>

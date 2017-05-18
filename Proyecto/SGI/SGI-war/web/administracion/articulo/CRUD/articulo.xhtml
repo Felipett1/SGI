@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:scrollPanel mode="native" style="width:100%;max-height: 300px !important">
+        <h:form id="articulo" enctype="multipart/form-data">
+            <p:remoteCommand name="cambiarFormulario" 
+                             actionListener="#{controlNavegacion.formularioArticuloDinamico(controladorArticulo.articulo.categoria != null ? controladorArticulo.articulo.categoria.secuencia : 0)}" 
+                             process="@this"/>
+            <p:panelGrid>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Codigo: "/>
+                        <br/>
+                        <p:inputText id="codigo" value="#{controladorArticulo.articulo.codigo}"
+                                     style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+                        <h:outputText value="#{controladorArticulo.articulo.codigo}"
+                                      style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Nombre: "/>
+                        <br/>
+                        <p:inputText id="nombre" value="#{controladorArticulo.articulo.nombre}"
+                                     style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+                        <h:outputText value="#{controladorArticulo.articulo.nombre}"
+                                      style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Costo: "/>
+                        <br/>
+                        <p:inputText id="costo" value="#{controladorArticulo.articulo.costo}"
+                                     style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+                        <h:outputText value="#{controladorArticulo.articulo.costo}"
+                                      style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Factura: "/>
+                        <br/>
+                        <p:inputText id="factura" value="#{controladorArticulo.articulo.factura}"
+                                     style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+                        <h:outputText value="#{controladorArticulo.articulo.factura}"
+                                      style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}; padding-right: 10px;"/>
+                        <p:commandButton icon="ui-icon-search" process="@this"
+                                         style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"
+                                         actionListener="#{controladorArticulo.alistarFactura()}"/>
+                        <br/>
+                        <p:fileUpload fileUploadListener="#{controladorArticulo.cargarArchivo}" mode="advanced"
+                                      auto="true" allowTypes="/(\.|\/)(pdf|PDF|Pdf)$/" 
+                                      update="info" invalidFileMessage="Solo se permiten archivos PDF."
+                                      label="Adjuntar"
+                                      style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+                        <h:outputText id="info" value="#{controladorArticulo.accion == 'I' ? controladorArticulo.factura != null ? 'Factura cargada' : 'Por favor cargue la factura' : 
+                                                         controladorArticulo.estadoFactura == 'S' ? 'Ya se cargo una factura' : controladorArticulo.estadoFactura == 'A' ? 'Factura actualizada' : 'Es necesario cargar la factura'}"
+                                      style="color: #{controladorArticulo.accion == 'I' ? controladorArticulo.factura != null ? 'green' : 'red' : 
+                                                      controladorArticulo.estadoFactura == 'S' ? 'green' : controladorArticulo.estadoFactura == 'A' ? 'green' : 'red'};
+                                      display: #{controladorArticulo.accion != 'C' ? '' : 'none'}; font-weight: bold"/>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Categoria: "/>
+                        <br/>
+                        <p:selectOneMenu label="#{controladorArticulo.articulo.categoria.nombre}" 
+                                         value="#{controladorArticulo.articulo.categoria}" style="width:125px;
+                                         display: #{controladorArticulo.accion == 'I' ? '' : 'none'}"
+                                         converter="#{convertidor}" effect="fade"
+                                         filter="true" filterMatchMode="contains">
+                            <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                            <f:selectItems value="#{controladorArticulo.listacaCategorias}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}"/>
+                            <p:ajax event="change"
+                                    listener="#{controladorArticulo.lovDinamico(controladorArticulo.articulo.categoria != null ? controladorArticulo.articulo.categoria.secuencia : 0)}" 
+                                    oncomplete="cambiarFormulario();"
+                                    process="@this,codigo,nombre,costo,factura"/>
+                        </p:selectOneMenu>
+                        <h:outputText value="#{controladorArticulo.articulo.categoria.nombre}"
+                                      style="display: #{controladorArticulo.accion != 'I' ? '' : 'none'}"/>
+                    </p:column>
+                    <p:column style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}">
+                        <p:outputLabel value="Activo? " style="padding-right: 20px"/>
+                        <p:selectBooleanCheckbox value="#{controladorArticulo.articulo.estado}" />
+                    </p:column>
+                    <p:column style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}">
+                        <p:outputLabel value="Estado: "/>
+                        <br/>
+                        <h:outputText value="#{controladorArticulo.articulo.estado ? 'Activo' : 'Inactivo'}"/>
+                    </p:column>
+                </p:row>
+                <p:row >
+                    <p:column colspan="3">
+                        <h:panelGroup id="dinamico">
+                            <ui:include src="#{controlNavegacion.urlContenidoDinamico}"/>
+                        </h:panelGroup>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column/>
+                    <p:column/>
+                    <p:column>
+                        <p:commandButton  value="Aceptar" icon="ui-icon-check"
+                                          actionListener="#{controladorArticulo.agregar_actualizar()}"
+                                          process="@form" style="float: right; display: #{controladorArticulo.accion != 'C' ? controladorArticulo.articulo.categoria != null ? '' : 'none' : 'none'}"
+                                          onclick="PF('dialogo').hide()"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+    </p:scrollPanel>
+</ui:composition>

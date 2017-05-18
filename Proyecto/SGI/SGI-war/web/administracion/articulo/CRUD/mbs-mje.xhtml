@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Clasificacion: "/>
+            <br/>
+            <p:selectOneMenu value="#{controladorArticulo.mbsMje.clasificacion}"
+                             effect="fade" filter="true" filterMatchMode="contains"
+                             autoWidth="false"
+                             style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}">
+                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                <f:selectItems value="#{controladorArticulo.clasificaciones}"/>
+            </p:selectOneMenu>
+            <h:outputText value="#{controladorArticulo.mbsMje.clasificacion}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Marca: "/>
+            <br/>
+            <p:selectOneMenu value="#{controladorArticulo.mbsMje.marca}"
+                             effect="fade" filter="true" filterMatchMode="contains"
+                             autoWidth="false"
+                             style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}">
+                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                <f:selectItems value="#{controladorArticulo.marcas}"/>
+            </p:selectOneMenu>
+            <h:outputText value="#{controladorArticulo.mbsMje.marca}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Modelo: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.mbsMje.modelo}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.mbsMje.modelo}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+    </p:row>
+    <p:row>
+        <p:column>
+            <p:outputLabel value="Serial: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.mbsMje.serial}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.mbsMje.serial}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column>
+            <p:outputLabel value="Color: "/>
+            <br/>
+            <p:inputText value="#{controladorArticulo.mbsMje.color}"
+                         style="display: #{controladorArticulo.accion != 'C' ? '' : 'none'}"/>
+            <h:outputText value="#{controladorArticulo.mbsMje.color}"
+                          style="display: #{controladorArticulo.accion == 'C' ? '' : 'none'}"/>
+        </p:column>
+        <p:column/>
+    </p:row>
+    <p:row>
+        <p:column colspan="3">
+            <p:outputLabel value="Observaciones: "/>
+            <br/>
+            <p:inputTextarea value="#{controladorArticulo.mbsMje.observacion}" 
+                             style="width: 100%" scrollHeight="150" autoResize="false"
+                             readonly="#{controladorArticulo.accion != 'C' ? 'false' : 'true'}"/>
+        </p:column>
+    </p:row>
+</ui:composition>
+

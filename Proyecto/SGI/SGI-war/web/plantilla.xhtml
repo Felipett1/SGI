@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='ISO-8859-1' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>.:: Sistema de inventarios - SGI ::.</title>
         <script src="./recursos/js/funciones.js"/>
@@ -12,17 +11,19 @@
         <link rel="stylesheet" href="./recursos/css/cssLayout.css"/>
         <link rel="stylesheet" href="./recursos/css/menu.css"/>
         <link rel="stylesheet" href="./recursos/css/login.css"/>
-        <meta charset="utf-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta charset="ISO-8859-1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+        <link href = "recursos/img/logo.png" rel="icon" type="image/png"/>
     </h:head>
 
     <h:body>
         <h:form id="principalForm" enctype="multipart/form-data">
-            <div id="top">
+            <p:growl id="growl" showDetail="true" autoUpdate="true"/>  
+            <!--<div id="top">
                 <ui:insert name="top">Top</ui:insert>
-            </div>
+            </div>-->
             <div>
                 <div class="left">
                     <ui:insert name="left">
@@ -38,8 +39,44 @@
                 </div>
             </div>
 
+            <p:dialog id="dialogo" header="#{controlNavegacion.tituloDialogo}" widgetVar="dialogo" modal="true" resizable="false" draggable="true"
+                      closeOnEscape="true" dynamic="true">
+                <ui:include src="#{controlNavegacion.urlNavegationDialog}" />
+            </p:dialog>
+
+            <p:dialog id="dialogoE" header="Eliminar" widgetVar="dialogoE" modal="true" resizable="false" draggable="false"
+                      closeOnEscape="true">
+                <p:panelGrid columns="2" style="padding-top: 0px">
+                    <p:column>
+                        <h:graphicImage value="recursos/img/alerta.png" width="75" height="50"/>
+                    </p:column>    
+                    <p:column>
+                        <h:outputText value="¿Está seguro que desea eliminar el registro?" style="font-weight:bold;" />
+                        <br/><br/>
+                        <ui:include src="#{controlNavegacion.urlNavegationDialogE}" />
+                    </p:column>
+                </p:panelGrid>
+            </p:dialog>
+
+            <!-- Navegacion-->
+
             <p:remoteCommand name="empresa" 
-                             actionListener="#{controlNavegacion.pantallaDinamica('/administracion/empresa.xhtml')}" 
+                             actionListener="#{controlNavegacion.pantallaDinamica('/administracion/empresa/empresa.xhtml')}" 
+                             process="@this"/>
+            <p:remoteCommand name="entidadContratante" 
+                             actionListener="#{controlNavegacion.pantallaDinamica('/administracion/entidadContratante/entidad_Contratante.xhtml')}" 
+                             process="@this"/>
+            <p:remoteCommand name="proyecto" 
+                             actionListener="#{controlNavegacion.pantallaDinamica('/administracion/proyecto/proyecto.xhtml')}" 
+                             process="@this"/>
+            <p:remoteCommand name="responsable" 
+                             actionListener="#{controlNavegacion.pantallaDinamica('/administracion/responsable/responsable.xhtml')}" 
+                             process="@this"/>
+            <p:remoteCommand name="articulo" 
+                             actionListener="#{controlNavegacion.pantallaDinamica('/administracion/articulo/articulo.xhtml')}" 
+                             process="@this"/>
+            <p:remoteCommand name="prestamoArticulo" 
+                             actionListener="#{controlNavegacion.pantallaDinamica('/movimiento/asignacion/prestamo_Articulo.xhtml')}" 
                              process="@this"/>
         </h:form>
     </h:body>

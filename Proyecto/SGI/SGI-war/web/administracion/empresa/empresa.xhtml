@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:remoteCommand name="llamarDialogoAC" process="@this"
+                     actionListener="#{controlNavegacion.dialogoDinamico('/administracion/empresa/CRUD/empresa.xhtml')}"/>
+    <p:remoteCommand name="llamarDialogoE" process="@this"
+                     actionListener="#{controlNavegacion.dialogoEDinamico('/administracion/empresa/CRUD/eliminar.xhtml')}"/>
+    <p:commandButton value="Agregar registro" actionListener="#{controladorEmpresa.limpiar()}" 
+                     oncomplete="llamarDialogoAC();" icon="ui-icon-plus" process="@this"/>
+    <p:dataTable id="dtbDatos" var="empresa" widgetVar="dtbDatos"
+                 scrollRows="50" scrollable="true" liveScroll="true" scrollHeight="415"
+                 value="#{controladorEmpresa.listaEmpresas}"
+                 emptyMessage="No hay datos" >
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Buscar: "/>
+                <p:inputText id="globalFilter" onkeyup="PF('dtbDatos').filter()" style="width:250px;" placeholder="Ingrese una palabra"/>
+            </p:outputPanel>
+        </f:facet>
+
+        <p:column headerText="Centro de costo"
+                  filterBy="#{empresa.centroCosto}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{empresa.centroCosto}">
+            <h:outputText value="#{empresa.centroCosto}"/>
+        </p:column>
+
+        <p:column headerText="Nombre"
+                  filterBy="#{empresa.nombre}" filterMatchMode="contains"
+                  filterStyle="display:none" sortBy="#{empresa.nombre}">
+            <h:outputText value="#{empresa.nombre}"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-pencil" 
+                             actionListener="#{controladorEmpresa.seleccionarActualizar_Eliminar(empresa)}" 
+                             oncomplete="llamarDialogoAC();" process="@this"/>
+        </p:column>
+
+        <p:column headerText=" " width="50">
+            <p:commandButton icon="ui-icon-trash" 
+                             actionListener="#{controladorEmpresa.seleccionarActualizar_Eliminar(empresa)}" 
+                             oncomplete="llamarDialogoE();" process="@this"/>
+        </p:column>
+    </p:dataTable>
+</ui:composition>
+

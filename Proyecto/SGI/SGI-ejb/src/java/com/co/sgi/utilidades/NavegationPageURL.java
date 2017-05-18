@@ -2,7 +2,7 @@ package com.co.sgi.utilidades;
 
 public enum NavegationPageURL {
 
-    EMPRESA("Empresa", "/administracion/empresa.xhtml");
+    EMPRESA("Empresa", "/administracion/empresa/empresa.xhtml");
 
     private String page;
     private String url;
